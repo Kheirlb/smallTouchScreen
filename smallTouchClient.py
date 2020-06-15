@@ -2,8 +2,8 @@
 import sys
 import time
 from PyQt5 import QtCore, QtWidgets, QtGui, Qt, uic
-import paho.mqtt.client as mqtt
-import paho.mqtt.publish as publish
+# import paho.mqtt.client as mqtt
+# import paho.mqtt.publish as publish
 from PyQt5.QtGui import QTextCursor
 
 print('Imported Packages and Starting Launch VI')
