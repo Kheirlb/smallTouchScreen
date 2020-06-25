@@ -21,16 +21,30 @@ class Window(QtWidgets.QMainWindow, Ui_MainWindow):
 		self.setupUi(self)
 		# self.showMaximized()
 		self.initUI()
+		self.lamp_setting = 0
+		self.is_lamp_on = False
 
 	def initUI(self):
 		print('initUI')
 
-		self.but.clicked.connect(self.countUp)
+		self.lamp_sl.sliderMoved.connect(self.change_lamp_brightness)
+		self.lamp_but.clicked.connect(self.toggle_lamp)
 
-	def countUp(self):
-		global num
-		num = num + 1
-		self.line.setText(str(num))
+	def change_lamp_brightness(self):
+		self.lamp_le.setText(str(self.lamp_sl.value()) + '%')
+		if self.lamp_sl.value() < 1:
+			self.is_lamp_on = False
+		else:
+			self.is_lamp_on = True
+
+	def toggle_lamp(self):
+		self.is_lamp_on = not self.is_lamp_on
+		if self.is_lamp_on:
+			self.lamp_setting = 100
+		else:
+			self.lamp_setting = 0
+		self.lamp_le.setText(str(self.lamp_setting) + '%')
+		self.lamp_sl.setValue(self.lamp_setting)
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
